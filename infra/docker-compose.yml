@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:@host.docker.internal:5432/notes_app"
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:80"  # Map local port 3000 to container's port 80
+    depends_on:
+      - backend
+

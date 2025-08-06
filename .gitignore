@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+
+# Node
+node_modules/
+.env
+
+# Docker
+.dockerignore
+
+# AWS
+.aws/
