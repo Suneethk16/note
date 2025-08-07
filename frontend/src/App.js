@@ -76,7 +76,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-400 to-green-600 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">🪑 Seating Position Predictor</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">🪑 Best Seat Predictor</h1>
           <p className="text-gray-600">Find the best seating arrangement!</p>
         </div>
 
@@ -108,10 +108,10 @@ function App() {
 
         <form onSubmit={handlePredict} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2">First Person's Name</label>
+            <label className="block text-gray-700 font-medium mb-2">Partner 1</label>
             <input
               type="text"
-              placeholder="Enter first person's name"
+              placeholder="Enter partner 1's name"
               value={person1Name}
               onChange={(e) => setPerson1Name(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -120,10 +120,10 @@ function App() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Second Person's Name</label>
+            <label className="block text-gray-700 font-medium mb-2">Partner 2</label>
             <input
               type="text"
-              placeholder="Enter second person's name"
+              placeholder="Enter partner 2's name"
               value={person2Name}
               onChange={(e) => setPerson2Name(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -140,16 +140,7 @@ function App() {
           </button>
         </form>
 
-        <div className="mt-6 bg-gray-50 rounded-lg p-4">
-          <h4 className="font-semibold text-gray-700 mb-2">Available Seating Options:</h4>
-          <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
-            {seatingPositions.map((position, index) => (
-              <div key={index} className="bg-white px-2 py-1 rounded text-center">
-                {position}
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         <div className="mt-8 text-center text-gray-600 text-sm">
           <p>Developed by <strong>Suneeth K</strong></p>

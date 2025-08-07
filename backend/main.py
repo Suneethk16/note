@@ -122,3 +122,17 @@ def view_database_table(request: Request, db: Session = Depends(get_db)):
         "predictions": predictions,
         "total_predictions": len(predictions)
     })
+
+@app.post("/delete/{prediction_id}", response_class=HTMLResponse)
+def delete_from_table(prediction_id: int, request: Request, db: Session = Depends(get_db)):
+    prediction = db.query(LovePrediction).filter(LovePrediction.id == prediction_id).first()
+    if prediction:
+        db.delete(prediction)
+        db.commit()
+    
+    predictions = db.query(LovePrediction).all()
+    return templates.TemplateResponse("db_viewer.html", {
+        "request": request,
+        "predictions": predictions,
+        "total_predictions": len(predictions)
+    })
