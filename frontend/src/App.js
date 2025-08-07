@@ -89,7 +89,7 @@ function App() {
               <p className="text-lg font-semibold text-gray-800 mb-2">
                 {result.boy_name} & {result.girl_name}
               </p>
-              <p className="text-2xl font-bold text-blue-600 mb-2">
+              <p className="text-2xl font-bold text-red-600 mb-2 bg-red-100 px-4 py-2 rounded-lg">
                 {result.seating_position}
               </p>
               <p className="text-sm text-gray-600">
