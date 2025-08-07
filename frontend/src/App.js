@@ -89,9 +89,9 @@ function App() {
               <p className="text-lg font-semibold text-gray-800 mb-2">
                 {result.boy_name} & {result.girl_name}
               </p>
-              <p className="text-2xl font-bold text-red-600 mb-2 bg-red-100 px-4 py-2 rounded-lg">
+              <div className="bg-red-500 text-white text-2xl font-bold mb-2 px-4 py-3 rounded-lg border-2 border-red-600 shadow-lg">
                 {result.seating_position}
-              </p>
+              </div>
               <p className="text-sm text-gray-600">
                 Compatibility Score: {result.prediction_score}%
               </p>
