@@ -1,0 +1,18 @@
+# First, create EKS cluster
+# aws eks create-cluster --name notes-app-cluster --version 1.27 --role-arn arn:aws:iam::ACCOUNT:role/eks-service-role --resources-vpc-config subnetIds=subnet-xxx,subnet-yyy
+
+# Update frontend service for internet access
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service-internet
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+spec:
+  selector:
+    app: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
