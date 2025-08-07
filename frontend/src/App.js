@@ -11,18 +11,15 @@ function App() {
 
   // List of seating positions
   const seatingPositions = [
-    "Side by Side",
-    "Across from Each Other",
-    "Corner Seating",
-    "Back to Back",
-    "L-Shaped Arrangement",
-    "Circular Seating",
-    "Window Side",
-    "Center Table",
-    "Booth Seating",
-    "Bar Counter",
-    "Outdoor Patio",
-    "Private Corner"
+    "Six Man",
+    "69",
+    "Doggy Style",
+    "Missionary",
+    "Face-Off",
+    "Stand and Deliver",
+    "Pearly Gates",
+    "The Socket",
+    "happy Baby",
   ];
 
   const handlePredict = async (e) => {
@@ -66,18 +63,18 @@ function App() {
       
     } catch (err) {
       console.error("Failed to predict:", err);
-      setError("Failed to predict seating position. Please try again.");
+      setError("Failed to predict sex position. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-green-600 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">🪑 Best Seat Predictor</h1>
-          <p className="text-gray-600">Find the best seating arrangement!</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">🪑 Best Sex Predictor</h1>
+          <p className="text-gray-600">Find the best Sex Position!</p>
         </div>
 
         {error && (
@@ -88,7 +85,7 @@ function App() {
 
         {result && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6 text-center">
-            <h3 className="font-bold text-xl mb-4 text-blue-800">🎯 Perfect Seating Position</h3>
+            <h3 className="font-bold text-xl mb-4 text-blue-800">🎯 Perfect Sex Position</h3>
             <div className="bg-white rounded-lg p-4 mb-4">
               <p className="text-lg font-semibold text-gray-800 mb-2">
                 {result.boy_name} & {result.girl_name}
@@ -101,7 +98,7 @@ function App() {
               </p>
             </div>
             <p className="text-sm text-blue-700">
-              This seating arrangement will create the perfect atmosphere for you both! 🌟
+              This sex arrangement will create the perfect atmosphere for you both! 🌟
             </p>
           </div>
         )}
@@ -136,7 +133,7 @@ function App() {
             className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
             disabled={loading}
           >
-            {loading ? 'Finding Best Seating...' : '🪑 Find Best Seating Position'}
+            {loading ? 'Finding Best Sex...' : '🪑 Find Best Sex Position'}
           </button>
         </form>
 
