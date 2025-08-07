@@ -1,5 +1,7 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from database import get_db, Note, Base, engine
 from typing import List
@@ -9,6 +11,7 @@ from pydantic import BaseModel
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 app.add_middleware(
     CORSMiddleware,
@@ -73,3 +76,12 @@ def view_database(db: Session = Depends(get_db)):
             for note in notes
         ]
     }
+
+@app.get("/db-table", response_class=HTMLResponse)
+def view_database_table(request: Request, db: Session = Depends(get_db)):
+    notes = db.query(Note).all()
+    return templates.TemplateResponse("db_viewer.html", {
+        "request": request,
+        "notes": notes,
+        "total_notes": len(notes)
+    })
