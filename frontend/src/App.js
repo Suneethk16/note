@@ -16,9 +16,6 @@ function App() {
     "Missionary",
     "Face-Off",
     "Stand and Deliver",
-    "Pearly Gates",
-    "The Socket",
-    "happy Baby",
   ];
 
   const handlePredict = async (e) => {
@@ -89,7 +86,7 @@ function App() {
               <p className="text-lg font-semibold text-gray-800 mb-2">
                 {result.boy_name} & {result.girl_name}
               </p>
-              <div className="bg-red-500 text-white text-2xl font-bold mb-2 px-4 py-3 rounded-lg border-2 border-red-600 shadow-lg">
+              <div style={{backgroundColor: '#ef4444', color: 'white', fontSize: '24px', fontWeight: 'bold', marginBottom: '8px', padding: '12px 16px', borderRadius: '8px', border: '2px solid #dc2626', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'}}>
                 {result.seating_position}
               </div>
               <p className="text-sm text-gray-600">
