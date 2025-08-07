@@ -164,7 +164,7 @@ function App() {
                 name="boy_dob"
                 value={formData.boy_dob}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white text-lg font-semibold"
+                className="w-full p-4 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-500 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-800 text-lg font-semibold"
                 disabled={loading}
               />
             </div>
@@ -196,7 +196,7 @@ function App() {
                 name="girl_dob"
                 value={formData.girl_dob}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-pink-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-400 focus:border-pink-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white text-lg font-semibold"
+                className="w-full p-4 border-2 border-pink-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-400 focus:border-pink-500 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-800 text-lg font-semibold"
                 disabled={loading}
               />
             </div>

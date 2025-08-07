@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from database import get_db, LovePrediction, Base, engine
 from typing import List
 from pydantic import BaseModel
+import random
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -57,10 +58,16 @@ def get_predictions(db: Session = Depends(get_db)):
 
 @app.post("/predict", response_model=LovePredictionResponse)
 def create_prediction(prediction: LovePredictionRequest, db: Session = Depends(get_db)):
-    # Simple love prediction algorithm
-    score = (len(prediction.boy_name) + len(prediction.girl_name) + prediction.boy_age + prediction.girl_age) % 100
-    if score < 10:
-        score += 50
+    # Enhanced love prediction algorithm
+    name_compatibility = (len(prediction.boy_name) + len(prediction.girl_name)) * 3
+    age_compatibility = abs(prediction.boy_age - prediction.girl_age) * 2
+    random_factor = random.randint(1, 30)
+    
+    score = (name_compatibility + random_factor - age_compatibility) % 100
+    if score < 20:
+        score += 30
+    elif score > 95:
+        score = random.randint(85, 95)
     
     love_prediction = LovePrediction(
         boy_name=prediction.boy_name,
