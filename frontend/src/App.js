@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [predictions, setPredictions] = useState([]);
@@ -83,58 +84,62 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Floating hearts animation */}
+    <div className="min-h-screen gradient-bg flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 text-pink-300 text-2xl animate-bounce">💖</div>
-        <div className="absolute top-20 right-20 text-red-300 text-3xl animate-pulse">💕</div>
-        <div className="absolute bottom-20 left-20 text-purple-300 text-2xl animate-bounce">💝</div>
-        <div className="absolute bottom-10 right-10 text-pink-400 text-xl animate-pulse">💗</div>
-        <div className="absolute top-1/2 left-1/4 text-yellow-300 text-lg animate-bounce">✨</div>
-        <div className="absolute top-1/3 right-1/3 text-pink-200 text-2xl animate-pulse">🌟</div>
+        <div className="absolute top-10 left-10 text-pink-300 text-4xl float-animation heart-beat">💖</div>
+        <div className="absolute top-20 right-20 text-red-300 text-5xl float-animation heart-beat" style={{animationDelay: '0.5s'}}>💕</div>
+        <div className="absolute bottom-20 left-20 text-purple-300 text-4xl float-animation heart-beat" style={{animationDelay: '1s'}}>💝</div>
+        <div className="absolute bottom-10 right-10 text-pink-400 text-3xl float-animation heart-beat" style={{animationDelay: '1.5s'}}>💗</div>
+        <div className="absolute top-1/2 left-1/4 text-yellow-300 text-3xl float-animation" style={{animationDelay: '2s'}}>✨</div>
+        <div className="absolute top-1/3 right-1/3 text-pink-200 text-4xl float-animation" style={{animationDelay: '2.5s'}}>🌟</div>
+        <div className="absolute top-3/4 left-1/2 text-purple-200 text-2xl float-animation" style={{animationDelay: '3s'}}>💫</div>
       </div>
       
-      <div className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-2xl w-full max-w-2xl border border-pink-200 relative z-10">
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-pink-600 via-purple-600 to-red-600 bg-clip-text text-transparent mb-2">
+      <div className="glass-effect p-10 rounded-3xl shadow-2xl w-full max-w-4xl relative z-10 sparkle">
+        <div className="text-center mb-10">
+          <h1 className="text-6xl font-extrabold neon-text mb-4 heart-beat">
             💕 Love Predictor 💕
           </h1>
-          <p className="text-gray-600 text-lg font-medium">Discover your love compatibility! ✨</p>
+          <p className="text-white text-xl font-semibold">Discover your magical love compatibility! ✨</p>
         </div>
 
         {error && (
-          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded-lg relative mb-4 shadow-md" role="alert">
+          <div className="bg-red-500/20 backdrop-blur-sm border-2 border-red-400 text-white px-6 py-4 rounded-2xl relative mb-6 shadow-lg pulse-glow" role="alert">
             <div className="flex items-center">
-              <span className="text-xl mr-2">⚠️</span>
+              <span className="text-2xl mr-3 heart-beat">⚠️</span>
               <div>
-                <strong className="font-bold">Error!</strong>
-                <span className="block sm:inline ml-2">{error}</span>
+                <strong className="font-bold text-lg">Error!</strong>
+                <span className="block text-base mt-1">{error}</span>
               </div>
             </div>
           </div>
         )}
 
         {result && (
-          <div className="bg-gradient-to-r from-pink-100 to-purple-100 border-l-4 border-pink-500 text-pink-800 px-6 py-4 rounded-lg relative mb-6 shadow-lg">
+          <div className="glass-effect border-2 border-pink-400 text-white px-8 py-6 rounded-2xl relative mb-8 shadow-2xl pulse-glow">
             <div className="text-center">
-              <h3 className="font-bold text-xl mb-2">💖 Love Prediction Result 💖</h3>
-              <div className="bg-white/80 rounded-full p-4 inline-block mb-2">
-                <span className="text-4xl font-bold text-transparent bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text">
+              <h3 className="font-bold text-2xl mb-4 neon-text heart-beat">💖 Love Prediction Result 💖</h3>
+              <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 inline-block mb-4 pulse-glow">
+                <span className="text-5xl font-bold text-white neon-text">
                   {result.prediction_score}%
                 </span>
               </div>
-              <p className="text-lg font-medium">
-                <span className="text-blue-600 font-bold">{result.boy_name}</span> & <span className="text-pink-600 font-bold">{result.girl_name}</span> have amazing love compatibility!
+              <p className="text-xl font-bold">
+                <span className="text-blue-300 neon-text">{result.boy_name}</span> 
+                <span className="text-pink-300 mx-3">💕</span> 
+                <span className="text-pink-300 neon-text">{result.girl_name}</span>
               </p>
+              <p className="text-lg mt-2 text-white/90">have amazing love compatibility!</p>
             </div>
           </div>
         )}
 
-        <form onSubmit={handlePredict} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4 bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-2xl border border-blue-200">
-              <h3 className="text-xl font-bold text-blue-700 text-center flex items-center justify-center">
-                👦 <span className="ml-2">Boy Details</span>
+        <form onSubmit={handlePredict} className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-6 glass-effect p-8 rounded-3xl border-2 border-blue-400 sparkle">
+              <h3 className="text-2xl font-bold text-white text-center flex items-center justify-center neon-text">
+                👦 <span className="ml-3">Boy Details</span>
               </h3>
               <input
                 type="text"
@@ -142,7 +147,7 @@ function App() {
                 placeholder="Boy's Name"
                 value={formData.boy_name}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white placeholder-white/70 text-lg font-semibold"
                 disabled={loading}
               />
               <input
@@ -151,7 +156,7 @@ function App() {
                 placeholder="Boy's Age"
                 value={formData.boy_age}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white placeholder-white/70 text-lg font-semibold"
                 disabled={loading}
               />
               <input
@@ -159,14 +164,14 @@ function App() {
                 name="boy_dob"
                 value={formData.boy_dob}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white text-lg font-semibold"
                 disabled={loading}
               />
             </div>
             
-            <div className="space-y-4 bg-gradient-to-br from-pink-50 to-rose-100 p-6 rounded-2xl border border-pink-200">
-              <h3 className="text-xl font-bold text-pink-700 text-center flex items-center justify-center">
-                👧 <span className="ml-2">Girl Details</span>
+            <div className="space-y-6 glass-effect p-8 rounded-3xl border-2 border-pink-400 sparkle">
+              <h3 className="text-2xl font-bold text-white text-center flex items-center justify-center neon-text">
+                👧 <span className="ml-3">Girl Details</span>
               </h3>
               <input
                 type="text"
@@ -174,7 +179,7 @@ function App() {
                 placeholder="Girl's Name"
                 value={formData.girl_name}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-pink-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-pink-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-400 focus:border-pink-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white placeholder-white/70 text-lg font-semibold"
                 disabled={loading}
               />
               <input
@@ -183,7 +188,7 @@ function App() {
                 placeholder="Girl's Age"
                 value={formData.girl_age}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-pink-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-pink-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-400 focus:border-pink-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white placeholder-white/70 text-lg font-semibold"
                 disabled={loading}
               />
               <input
@@ -191,7 +196,7 @@ function App() {
                 name="girl_dob"
                 value={formData.girl_dob}
                 onChange={handleInputChange}
-                className="w-full p-4 border-2 border-pink-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300 bg-white/80"
+                className="w-full p-4 border-2 border-pink-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-pink-400 focus:border-pink-500 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white text-lg font-semibold"
                 disabled={loading}
               />
             </div>
@@ -199,25 +204,22 @@ function App() {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-red-500 hover:from-pink-600 hover:via-purple-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 text-lg"
+            className="w-full glass-effect border-2 border-pink-400 text-white font-bold py-6 px-8 rounded-3xl shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 text-xl pulse-glow sparkle neon-text"
             disabled={loading}
           >
             {loading ? (
               <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Predicting Love...
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mr-4"></div>
+                Predicting Love Magic...
               </span>
             ) : '💕 Predict Love Compatibility 💕'}
           </button>
         </form>
 
-        <div className="mt-8 text-center">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-4 border border-gray-300">
-            <p className="text-gray-700 font-semibold">✨ Developed by <span className="text-purple-600 font-bold">Suneeth K</span> ✨</p>
-            <p className="text-gray-600 text-sm mt-1">© 2025 All Rights Reserved 💖</p>
+        <div className="mt-10 text-center">
+          <div className="glass-effect rounded-3xl p-6 border-2 border-purple-400 sparkle">
+            <p className="text-white text-lg font-bold neon-text">✨ Developed by <span className="text-yellow-300">Suneeth K</span> ✨</p>
+            <p className="text-white/80 text-base mt-2">© 2025 All Rights Reserved 💖</p>
           </div>
         </div>
       </div>
