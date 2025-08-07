@@ -11,7 +11,6 @@ function App() {
 
   // List of seating positions
   const seatingPositions = [
-    "Six Man",
     "69",
     "Doggy Style",
     "Missionary",
@@ -73,7 +72,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">🪑 Best Sex Predictor</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Best Sex Position Predictor</h1>
           <p className="text-gray-600">Find the best Sex Position!</p>
         </div>
 
@@ -133,7 +132,7 @@ function App() {
             className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
             disabled={loading}
           >
-            {loading ? 'Finding Best Sex...' : '🪑 Find Best Sex Position'}
+            {loading ? 'Finding Best Sex...' : 'Find Best Sex Position'}
           </button>
         </form>
 
