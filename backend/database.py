@@ -10,11 +10,17 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-class Note(Base):
-    __tablename__ = "notes"
+class LovePrediction(Base):
+    __tablename__ = "love_predictions"
     
     id = Column(Integer, primary_key=True, index=True)
-    text = Column(String, nullable=False)
+    boy_name = Column(String, nullable=False)
+    boy_age = Column(Integer, nullable=False)
+    boy_dob = Column(String, nullable=False)
+    girl_name = Column(String, nullable=False)
+    girl_age = Column(Integer, nullable=False)
+    girl_dob = Column(String, nullable=False)
+    prediction_score = Column(Integer, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 def get_db():

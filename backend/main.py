@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from database import get_db, Note, Base, engine
+from database import get_db, LovePrediction, Base, engine
 from typing import List
 from pydantic import BaseModel
 
@@ -21,67 +21,97 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class NoteResponse(BaseModel):
+class LovePredictionRequest(BaseModel):
+    boy_name: str
+    boy_age: int
+    boy_dob: str
+    girl_name: str
+    girl_age: int
+    girl_dob: str
+
+class LovePredictionResponse(BaseModel):
     id: int
-    text: str
+    boy_name: str
+    boy_age: int
+    boy_dob: str
+    girl_name: str
+    girl_age: int
+    girl_dob: str
+    prediction_score: int
     
     class Config:
         from_attributes = True
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello from FastAPI backend!"}
+    return {"message": "Love Predictor API"}
 
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
 
-@app.get("/notes", response_model=List[NoteResponse])
-def get_notes(db: Session = Depends(get_db)):
-    notes = db.query(Note).all()
-    return notes
+@app.get("/predictions", response_model=List[LovePredictionResponse])
+def get_predictions(db: Session = Depends(get_db)):
+    predictions = db.query(LovePrediction).all()
+    return predictions
 
-@app.post("/notes", response_model=NoteResponse)
-def create_note(text: str, db: Session = Depends(get_db)):
-    if not text.strip():
-        raise HTTPException(status_code=400, detail="Note text cannot be empty")
+@app.post("/predict", response_model=LovePredictionResponse)
+def create_prediction(prediction: LovePredictionRequest, db: Session = Depends(get_db)):
+    # Simple love prediction algorithm
+    score = (len(prediction.boy_name) + len(prediction.girl_name) + prediction.boy_age + prediction.girl_age) % 100
+    if score < 10:
+        score += 50
     
-    note = Note(text=text.strip())
-    db.add(note)
+    love_prediction = LovePrediction(
+        boy_name=prediction.boy_name,
+        boy_age=prediction.boy_age,
+        boy_dob=prediction.boy_dob,
+        girl_name=prediction.girl_name,
+        girl_age=prediction.girl_age,
+        girl_dob=prediction.girl_dob,
+        prediction_score=score
+    )
+    db.add(love_prediction)
     db.commit()
-    db.refresh(note)
-    return note
+    db.refresh(love_prediction)
+    return love_prediction
 
-@app.delete("/notes/{note_id}")
-def delete_note(note_id: int, db: Session = Depends(get_db)):
-    note = db.query(Note).filter(Note.id == note_id).first()
-    if not note:
-        raise HTTPException(status_code=404, detail="Note not found")
+@app.delete("/predictions/{prediction_id}")
+def delete_prediction(prediction_id: int, db: Session = Depends(get_db)):
+    prediction = db.query(LovePrediction).filter(LovePrediction.id == prediction_id).first()
+    if not prediction:
+        raise HTTPException(status_code=404, detail="Prediction not found")
     
-    db.delete(note)
+    db.delete(prediction)
     db.commit()
-    return {"message": "Note deleted successfully"}
+    return {"message": "Prediction deleted successfully"}
 
 @app.get("/db-viewer")
 def view_database(db: Session = Depends(get_db)):
-    notes = db.query(Note).all()
+    predictions = db.query(LovePrediction).all()
     return {
-        "total_notes": len(notes),
-        "notes": [
+        "total_predictions": len(predictions),
+        "predictions": [
             {
-                "id": note.id,
-                "text": note.text,
-                "created_at": note.created_at.isoformat() if note.created_at else None
+                "id": prediction.id,
+                "boy_name": prediction.boy_name,
+                "boy_age": prediction.boy_age,
+                "boy_dob": prediction.boy_dob,
+                "girl_name": prediction.girl_name,
+                "girl_age": prediction.girl_age,
+                "girl_dob": prediction.girl_dob,
+                "prediction_score": prediction.prediction_score,
+                "created_at": prediction.created_at.isoformat() if prediction.created_at else None
             }
-            for note in notes
+            for prediction in predictions
         ]
     }
 
 @app.get("/db-table", response_class=HTMLResponse)
 def view_database_table(request: Request, db: Session = Depends(get_db)):
-    notes = db.query(Note).all()
+    predictions = db.query(LovePrediction).all()
     return templates.TemplateResponse("db_viewer.html", {
         "request": request,
-        "notes": notes,
-        "total_notes": len(notes)
+        "predictions": predictions,
+        "total_predictions": len(predictions)
     })

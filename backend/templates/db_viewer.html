@@ -12,25 +12,37 @@
     </style>
 </head>
 <body>
-    <h1>Notes Database</h1>
+    <h1>Love Predictions Database</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Text</th>
+                <th>Boy Name</th>
+                <th>Boy Age</th>
+                <th>Boy DOB</th>
+                <th>Girl Name</th>
+                <th>Girl Age</th>
+                <th>Girl DOB</th>
+                <th>Love Score</th>
                 <th>Created At</th>
             </tr>
         </thead>
         <tbody>
-            {% for note in notes %}
+            {% for prediction in predictions %}
             <tr>
-                <td>{{ note.id }}</td>
-                <td>{{ note.text }}</td>
-                <td>{{ note.created_at }}</td>
+                <td>{{ prediction.id }}</td>
+                <td>{{ prediction.boy_name }}</td>
+                <td>{{ prediction.boy_age }}</td>
+                <td>{{ prediction.boy_dob }}</td>
+                <td>{{ prediction.girl_name }}</td>
+                <td>{{ prediction.girl_age }}</td>
+                <td>{{ prediction.girl_dob }}</td>
+                <td>{{ prediction.prediction_score }}%</td>
+                <td>{{ prediction.created_at }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <p><strong>Total Notes:</strong> {{ total_notes }}</p>
+    <p><strong>Total Predictions:</strong> {{ total_predictions }}</p>
 </body>
 </html>
