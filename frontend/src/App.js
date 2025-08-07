@@ -22,7 +22,7 @@ function App() {
   //   is running on your local machine, 'localhost' will not work. You would need to expose your
   //   local backend to the internet (e.g., with ngrok) or deploy both frontend and backend
   //   to a publicly accessible environment.
-  const API_BASE_URL = process.env.REACT_APP_API_URL || '/api'; // Use environment variable or fallback
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://notes-backend-312n.onrender.com'; // Use environment variable or fallback
 
   // Function to fetch notes from the backend
   const fetchNotes = async () => {
